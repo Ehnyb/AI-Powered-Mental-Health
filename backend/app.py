@@ -1,22 +1,17 @@
-from flask import Flask, request, jsonify  # Import Flask essentials
-from flask_cors import CORS  # Enable CORS for API
+from flask import Flask, request, jsonify  
+from flask_cors import CORS  
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import random  # For randomizing quotes
+import random  
 import logging
 
-
-# Create the Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)  
 
-# Use GPT-2 model (you can replace it with a larger model if needed)
 model_name = "gpt2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
-# Anime quotes for various moods
 anime_quotes = {
-    # Positive emotions
     "happy": [
         "“A smile is the best way to get yourself out of a tight spot, even if it’s fake.” — Sai (Naruto)",
         "“The world isn’t as bad as you think.” — Celty Sturluson (Durarara!!)",
@@ -50,8 +45,6 @@ anime_quotes = {
         "“A lesson without pain is meaningless. But with pain, you learn to grow.” — Edward Elric",
         "“It’s not the world that’s messed up; it’s the way people look at it.” — Kaneki Ken (Tokyo Ghoul)"
     ],
-
-    # Negative emotions
     "sad": [
         "“Fear is not evil. It tells you what your weakness is. And once you know your weakness, you can become stronger.” — Gildarts Clive (Fairy Tail)",
         "“Forgetting something doesn't mean it never happened.” — Celty Sturluson (Durarara!!)"
@@ -83,8 +76,6 @@ anime_quotes = {
     "disappointed": [
         "“The moment you think of giving up, think of the reason why you held on so long.” — Natsu Dragneel (Fairy Tail)"
     ],
-
-    # Neutral/complex emotions
     "neutral": [
         "“Keep moving forward.” — Eren Yeager (Attack on Titan)"
     ],
@@ -106,8 +97,6 @@ anime_quotes = {
     "indifferent": [
         "“Whether you care or not, life keeps moving.” — Shikamaru (Naruto)"
     ],
-
-    # Other situational moods
     "stressed": [
         "“Calm your mind, breathe, and take things one step at a time.” — Tanjiro Kamado (Demon Slayer)"
     ],
@@ -134,16 +123,12 @@ anime_quotes = {
     ]
 }
 
-# Function to provide AI-generated suggestions
 def get_suggestions(mood):
     if mood in anime_quotes:
         return random.choice(anime_quotes[mood])
     else:
         return f"We don’t have a specific quote for '{mood}', but remember: 'The journey of life is about moving forward, even in uncertainty.'"
 
-# API route to handle mood check-ins
-
-# Enable logging
 logging.basicConfig(level=logging.INFO)
 
 @app.route('/checkin', methods=['POST'])
@@ -163,11 +148,9 @@ def check_in():
         logging.error(f"Error: {str(e)}")
         return jsonify({"error": "An error occurred. Please try again."}), 500
 
-# Health check route
 @app.route('/', methods=['GET'])
 def home():
     return "Welcome to the Mental Health Check-In API!"
 
-# Run the app
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5001)
