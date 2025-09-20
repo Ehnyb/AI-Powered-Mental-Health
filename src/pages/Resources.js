@@ -144,6 +144,7 @@ const Resources = () => {
   const TabPanel = ({ children, value, index }) => (
     <div hidden={value !== index}>
       {value === index && <Box sx={{ py: 3 }}>{children}</Box>}
+      }
     </div>
   );
 
