@@ -28,7 +28,7 @@ import { getAuth } from 'firebase/auth';
 const Dashboard = () => {
   const [dailyQuote, setDailyQuote] = useState('');
   const [moodStreak, setMoodStreak] = useState(0);
-  const [weeklyProgress, setWeeklyProgress] = useState(65);
+  const [weeklyProgress] = useState(65);
   const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
@@ -49,7 +49,7 @@ const Dashboard = () => {
     // Load user data from localStorage
     const streak = localStorage.getItem(`moodStreak_${user?.uid}`) || 0;
     setMoodStreak(parseInt(streak));
-  }, [user]);
+  }, [user, quotes]);
 
   const quickActions = [
     {

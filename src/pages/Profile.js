@@ -18,10 +18,8 @@ import {
   ListItemIcon,
   ListItemText,
   Chip,
-  LinearProgress,
 } from '@mui/material';
 import {
-  Person,
   Edit,
   Email,
   CalendarToday,

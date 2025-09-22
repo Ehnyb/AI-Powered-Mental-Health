@@ -26,7 +26,6 @@ import {
   SentimentNeutral,
   SentimentSatisfied,
   SentimentVerySatisfied,
-  Add,
   TrendingUp,
 } from '@mui/icons-material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';

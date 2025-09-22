@@ -18,7 +18,6 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Divider,
 } from '@mui/material';
 import {
   Forum,
@@ -27,8 +26,6 @@ import {
   Comment,
   People,
   Support,
-  Favorite,
-  Psychology,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
